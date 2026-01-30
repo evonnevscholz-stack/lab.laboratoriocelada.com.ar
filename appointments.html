@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedir Turno | Laboratorio Celada</title>
+    <meta name="description" content="Reserva tu turno online para análisis clínicos en Laboratorio Celada. Fácil, rápido y seguro.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0D4A8A;
+            --primary-light: #2A6EBB;
+            --secondary: #00A8A8;
+            --accent: #FF6B6B;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --transition: all 0.3s ease;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(13, 74, 138, 0.9), rgba(13, 74, 138, 0.8)), 
+                        url('images/appointment-banner.jpg') center/cover no-repeat;
+            color: white;
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* Appointment Process */
+        .appointment-process {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-steps:before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--primary);
+            z-index: 1;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 3px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 15px;
+            transition: var(--transition);
+        }
+
+        .process-step.active .step-number {
+            background: var(--primary);
+            color: white;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        /* Appointment Form */
+        .appointment-form-section {
+            padding: 80px 0;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .form-body {
+            padding: 40px;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-label.required:after {
+            content: '*';
+            color: var(--accent);
+            margin-left: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(13, 74, 138, 0.1);
+        }
+
+        .form-select {
+            appearance: none;
+            background: white url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236C757D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 15px center;
+            background-size: 16px;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-help {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 5px;
+            display: block;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .service-option {
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .service-option:hover {
+            border-color: var(--primary);
+            background: rgba(13, 74, 138, 0.05);
+        }
+
+        .service-option.selected {
+            border-color: var(--primary);
+            background: rgba(13, 74, 138, 0.1);
+        }
+
+        .service-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Calendar */
+        .calendar-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            font-weight: 600;
+            color: var(--gray);
+            padding: 10px 0;
+        }
+
+        .calendar-date {
+            text-align: center;
+            padding: 12px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-date:hover {
+            background: var(--gray-light);
+        }
+
+        .calendar-date.selected {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calendar-date.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Time Slots */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .time-slot {
+            padding: 12px;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .time-slot:hover {
+            border-color: var(--primary);
+        }
+
+        .time-slot.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .time-slot.disabled {
+            background: var(--gray-light);
+            color: var(--gray);
+            cursor: not-allowed;
+        }
+
+        /* Form Navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .btn-back {
+            background: var(--gray-light);
+            color: var(--dark);
+            border: none;
+        }
+
+        .btn-back:hover {
+            background: #dee2e6;
+        }
+
+        /* Confirmation */
+        .confirmation-step {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .confirmation-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 30px;
+        }
+
+        .appointment-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .detail-value {
+            color: var(--primary);
+        }
+
+        /* Important Notes */
+        .important-notes {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+        }
+
+        .notes-title {
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .notes-list {
+            color: #856404;
+            padding-left: 20px;
+        }
+
+        .notes-list li {
+            margin-bottom: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 120px 0 60px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .process-steps:before {
+                display: none;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 5px;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .form-body {
+                padding: 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div>
+                    <div class="logo-text">Laboratorio Celada</div>
+                    <div class="logo-subtext">Excelencia en Diagnóstico</div>
+                </div>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="services.html">Servicios</a></li>
+                <li><a href="about.html">Sobre nosotros</a></li>
+                <li><a href="appointments.html" class="active">Turnos</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="tel:+549114567890" class="emergency-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Llamar ahora</span>
+                </a>
+                <a href="appointments.html" class="btn btn-primary">
+                    <i class="fas fa-calendar-check"></i>
+                    Pedir turno
+                </a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Pedir Turno Online</h1>
+            <p>Reserva tu cita de manera fácil, rápida y segura desde la comodidad de tu hogar.</p>
+        </div>
+    </section>
+
+    <!-- Appointment Process -->
+    <section class="appointment-process">
+        <div class="container">
+            <div class="process-steps">
+                <div class="process-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Datos Personales</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">Información básica</div>
+                </div>
+                
+                <div class="process-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Servicio</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">Selecciona análisis</div>
+                </div>
+                
+                <div class="process-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Fecha y Hora</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">Elige tu horario</div>
+                </div>
+                
+                <div class="process-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Confirmación</div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">Revisa y confirma</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Form -->
+    <section class="appointment-form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Reserva tu Turno</h2>
+                    <p>Completa el formulario para programar tu cita</p>
+                </div>
+                
+                <div class="form-body">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-step active" id="step1">
+                        <h3 style="margin-bottom: 30px; color: var(--primary);">Datos Personales</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required" for="firstName">Nombre</label>
+                                <input type="text" id="firstName" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required" for="lastName">Apellido</label>
+                                <input type="text" id="lastName" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required" for="dni">DNI</label>
+                                <input type="text" id="dni" class="form-control" required pattern="[0-9]{8}">
+                                <span class="form-help">8 dígitos sin puntos</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required" for="birthDate">Fecha de Nacimiento</label>
+                                <input type="date" id="birthDate" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
