@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio Celada | Análisis Clínicos de Alta Precisión</title>
+    <meta name="description" content="Laboratorio de análisis clínicos con tecnología de vanguardia y profesionales certificados. Resultados confiables y rápidos.">
+    <meta name="keywords" content="laboratorio, análisis clínicos, sangre, diagnóstico, salud, medicina, Argentina">
+    <meta name="author" content="Laboratorio Celada">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Laboratorio Celada | Análisis Clínicos de Alta Precisión">
+    <meta property="og:description" content="Tecnología de vanguardia y profesionales certificados para tu salud.">
+    <meta property="og:image" content="https://labor.laboratoriocelada.com.ar/images/hero-bg.jpg">
+    <meta property="og:url" content="https://labor.laboratoriocelada.com.ar">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <style>
+        :root {
+            --primary: #0D4A8A;
+            --primary-light: #2A6EBB;
+            --secondary: #00A8A8;
+            --accent: #FF6B6B;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --gray-light: #E9ECEF;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(13, 74, 138, 0.1);
+        }
+
+        .btn-accent {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background-color: #008787;
+            transform: translateY(-3px);
+        }
+
+        /* Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo-subtext {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 400;
+            margin-top: -5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .emergency-btn {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .emergency-btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(13, 74, 138, 0.9), rgba(13, 74, 138, 0.8)), 
+                        url('images/hero-bg.jpg') center/cover no-repeat;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--light));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+
+        /* Services Section */
+        .services-section {
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-category {
+            display: inline-block;
+            background-color: rgba(0, 168, 168, 0.1);
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .service-features li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Why Choose Us */
+        .why-us-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .why-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .why-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background-color: white;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: var(--light);
+            padding: 40px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-rating {
+            color: #FFC107;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .cta-feature i {
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+        }
+
+        .footer-contact i {
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        .footer-hours {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-top: 20px;
+        }
+
+        .footer-hours h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-actions .btn {
+                display: none;
+            }
+            
+            .emergency-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+            }
+            
+            .hero-actions .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">Laboratorio Celada</div>
+                        <div class="logo-subtext">Excelencia en Diagnóstico</div>
+                    </div>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Inicio</a></li>
+                    <li><a href="#services" class="nav-link">Servicios</a></li>
+                    <li><a href="#why-us" class="nav-link">¿Por qué nosotros?</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonios</a></li>
+                    <li><a href="#contact" class="nav-link">Contacto</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <a href="tel:+549114567890" class="emergency-btn">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Llamar ahora</span>
+                    </a>
+                    <a href="appointments.html" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Pedir turno
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Excelencia en Diagnóstico Clínico</h1>
+                <p>Tecnología de vanguardia y profesionales certificados para resultados confiables y rápidos. Tu salud es nuestra prioridad.</p>
+                
+                <div class="hero-actions">
+                    <a href="appointments.html" class="btn btn-accent">
+                        <i class="fas fa-calendar-alt"></i>
+                        Solicitar análisis
+                    </a>
+                    <a href="#services" class="btn btn-secondary">
+                        <i class="fas fa-stethoscope"></i>
+                        Ver servicios
+                    </a>
+                </div>
+                
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>Resultados en 24h</h4>
+                            <p>Rápida entrega de resultados</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Calidad Certificada</h4>
+                            <p>Normas internacionales</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div>
+                            <h4>Especialistas</h4>
+                            <p>Profesionales calificados</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div>
+                            <h4>Toma de muestras</h4>
+                            <p>Servicio a domicilio disponible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services-section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+                <p>Ofrecemos una amplia gama de análisis clínicos con tecnología de última generación.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="images/services/blood-test.jpg" alt="Análisis de Sangre">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-category">Hematología</span>
+                        <h3>Análisis de Sangre Completo</h3>
+                        <p>Evaluación completa de glóbulos rojos, blancos, plaquetas y hemoglobina para diagnóstico preciso.</p>
+                        
+                        <ul class="service-features">
+                            <li>Hemograma completo</li>
+                            <li>Química sanguínea</li>
+                            <li>Perfil lipídico</li>
+                            <li>Coagulación</li>
+                        </ul>
+                        
+                        <a href="services.html#hematologia" class="btn btn-secondary" style="width: 100%;">
+                            <i class="fas fa-info-circle"></i>
+                            Más información
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="images/services/pcr-test.jpg" alt="Diagnóstico Molecular">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-category">Molecular</span>
+                        <h3>Diagnóstico Molecular</h3>
+                        <p>Tecnología PCR y secuenciación para detección precisa de enfermedades genéticas e infecciosas.</p>
+                        
+                        <ul class="service-features">
+                            <li>PCR en tiempo real</li>
+                            <li>Secuenciación genómica</li>
+                            <li>Test de paternidad</li>
+                            <li>Farmacogenética</li>
+                        </ul>
+                        
+                        <a href="services.html#molecular" class="btn btn-secondary" style="width: 100%;">
+                            <i class="fas fa-info-circle"></i>
+                            Más información
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="images/services/ultrasound.jpg" alt="Imagenología">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-category">Imagenología</span>
+                        <h3>Estudios por Imágenes</h3>
+                        <p>Tecnología avanzada en ecografía, radiología y resonancia magnética para diagnóstico por imágenes.</p>
+                        
+                        <ul class="service-features">
+                            <li>Ecografía doppler</li>
+                            <li>Radiografía digital</li>
+                            <li>Densitometría ósea</li>
+                            <li>Tomografía computada</li>
+                        </ul>
+                        
+                        <a href="services.html#imagenologia" class="btn btn-secondary" style="width: 100%;">
+                            <i class="fas fa-info-circle"></i>
+                            Más información
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="services.html" class="btn btn-primary">
+                    <i class="fas fa-list"></i>
+                    Ver todos los servicios
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section why-us-section" id="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>¿Por qué elegirnos?</h2>
+                <p>Más de 20 años de experiencia en diagnóstico clínico nos respaldan.</p>
+            </div>
+            
+            <div class="why-us-grid">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certificaciones Internacionales</h3>
+                    <p>Acreditados bajo normas ISO 15189, garantizando la máxima calidad en todos nuestros procesos.</p>
+                </div>
+                
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Tecnología de Vanguardia</h3>
+                    <p>Equipos de última generación para resultados precisos y confiables en el menor tiempo posible.</p>
+                </div>
+                
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Equipo Especializado</h3>
+                    <p>Profesionales con especialización en distintas áreas de la medicina de laboratorio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lo que dicen nuestros pacientes</h2>
+                <p>Testimonios reales de personas que confiaron en nosotros.</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="María González">
+                    </div>
+                    
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    
+                    <p class="testimonial-text">
+                        "Excelente servicio. Los resultados llegaron antes de lo esperado y el trato del personal fue muy amable. Totalmente recomendado."
+                    </p>
+                    
+                    <div class="testimonial-author">María González</div>
+                    <div style="color: var(--gray); font-size: 0.9rem;">Paciente desde 2023</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Necesitas un análisis médico?</h2>
+                <p>Programa tu cita hoy mismo. Ofrecemos resultados confiables con la más alta tecnología.</p>
+                
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="appointments.html" class="btn btn-accent">
+                        <i class="fas fa-calendar-alt"></i>
+                        Pedir turno online
+                    </a>
+                    <a href="tel:+549114567890" class="btn btn-secondary">
+                        <i class="fas fa-phone-alt"></i>
+                        Llamar ahora
+                    </a>
+                </div>
+                
+                <div class="cta-features">
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Sin costo de consulta</span>
+                    </div>
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Resultados online</span>
+                    </div>
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Cobertura médica</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <a href="index.html" class="logo" style="color: white;">
+                            <div class="logo-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div>
+                                <div class="logo-text">Laboratorio Celada</div>
+                                <div class="logo-subtext" style="color: #aaa;">Excelencia en Diagnóstico</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <p class="footer-description">
+                        Más de 20 años brindando servicios de diagnóstico clínico con tecnología de vanguardia y profesionales altamente capacitados.
+                    </p>
+                    
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. Siempre Viva 123, Buenos Aires, Argentina</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+54 9 11 4567-8900</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@laboratoriocelada.com.ar</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Horarios de atención</h4>
+                    <div class="footer-hours">
+                        <ul class="hours-list">
+                            <li>
+                                <span>Lunes a Viernes</span>
+                                <span>7:00 - 20:00 hs</span>
+                            </li>
+                            <li>
+                                <span>Sábados</span>
+                                <span>8:00 - 14:00 hs</span>
+                            </li>
+                            <li>
+                                <span>Domingos</span>
+                                <span>Urgencias</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <h4 style="margin-top: 30px;">Servicios a domicilio</h4>
+                    <p style="color: #aaa; margin-top: 10px;">
+                        Disponible para pacientes con movilidad reducida o por solicitud especial.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>Enlaces rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="services.html">Servicios</a></li>
+                        <li><a href="about.html">Sobre nosotros</a></li>
+                        <li><a href="appointments.html">Pedir turno</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="#privacy">Política de privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear">2026</span> Laboratorio Celada. Todos los derechos reservados.</p>
+                <p>MAT: 12345 • Licencia Sanitaria: 6789/ABC</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Set current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const header = document.getElementById('header');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Simple testimonial slider
+        const testimonials = [
+            {
+                name: "María González",
+                role: "Paciente desde 2023",
+                text: "Excelente servicio. Los resultados llegaron antes de lo esperado y el trato del personal fue muy amable. Totalmente recomendado.",
+                rating: 5,
+                image: "https://randomuser.me/api/portraits/women/32.jpg"
+            },
+            {
+                name: "Carlos Rodríguez",
+                role: "Paciente desde 2021",
+                text: "La atención fue impecable. Me explicaron todo el proceso y los resultados fueron muy detallados. Volveré sin duda.",
+                rating: 5,
+                image: "https://randomuser.me/api/portraits/men/54.jpg"
+            },
+            {
+                name: "Ana Martínez",
+                role: "Paciente desde 2022",
+                text: "El servicio a domicilio fue una bendición para mi madre que no puede moverse fácilmente. Muy profesionales.",
+                rating: 5,
+                image: "https://randomuser.me/api/portraits/women/65.jpg"
+            }
+        ];
+        
+        let currentTestimonial = 0;
+        const testimonialCard = document.querySelector('.testimonial-card');
+        
+        function updateTestimonial() {
+            const testimonial = testimonials[currentTestimonial];
+            
+            testimonialCard.innerHTML = `
+                <div class="testimonial-avatar">
+                    <img src="${testimonial.image}" alt="${testimonial.name}">
+                </div>
+                
+                <div class="testimonial-rating">
+                    ${'<i class="fas fa-star"></i>'.repeat(testimonial.rating)}
+                </div>
+                
+                <p class="testimonial-text">
+                    "${testimonial.text}"
+                </p>
+                
+                <div class="testimonial-author">${testimonial.name}</div>
+                <div style="color: var(--gray); font-size: 0.9rem;">${testimonial.role}</div>
+            `;
+            
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        }
+        
+        // Rotate testimonials every 5 seconds
+        setInterval(updateTestimonial, 5000);
+        
+        // Initialize first testimonial
+        updateTestimonial();
+        
+        // Form validation for contact forms
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simple validation
+                const inputs = this.querySelectorAll('input[required], textarea[required]');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.style.borderColor = 'var(--danger)';
+                    } else {
+                        input.style.borderColor = '';
+                    }
+                });
+                
+                if (isValid) {
+                    // In a real application, you would send the form data to a server
+                    alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+                    this.reset();
+                } else {
+                    alert('Por favor, completa todos los campos requeridos.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
